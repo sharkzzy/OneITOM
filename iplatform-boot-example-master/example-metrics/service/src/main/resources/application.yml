@@ -1,0 +1,8 @@
+discovery.server.address: http://localhost:8761/eureka/ 
+server:
+  port: 8081
+  host: localhost
+  contextPath: /myprojectservice
+
+# 不连接注册中心
+eureka.client.enabled: false

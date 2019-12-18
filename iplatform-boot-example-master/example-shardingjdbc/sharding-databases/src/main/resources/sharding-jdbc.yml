@@ -1,0 +1,10 @@
+shardingRule:  
+  defaultDatabaseStrategy: 
+    inline:
+      shardingColumn: user_id
+      algorithmExpression: ds${user_id % 2}
+  tables:
+    t_order: 
+      actualDataNodes: ds${0..1}.t_order
+props:
+  sql.show: true

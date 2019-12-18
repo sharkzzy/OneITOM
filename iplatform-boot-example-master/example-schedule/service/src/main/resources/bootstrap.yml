@@ -1,0 +1,9 @@
+info:
+  app:
+    name: 后台服务
+    description: 后台服务
+    version: 0.0.1
+spring:
+  application:
+    name: myproject-service
+     

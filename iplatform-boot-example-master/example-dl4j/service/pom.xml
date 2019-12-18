@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.iplatform.example</groupId>
+    <artifactId>example-dl4j-service</artifactId>
+    <version>1.0.0.100</version>
+    <name>example-dl4j-service</name>
+    <description>service</description>
+    <packaging>jar</packaging>
+    <parent>
+        <groupId>org.iplatform.example</groupId>
+        <artifactId>example-dl4j</artifactId>
+        <version>1.0.0.100</version>
+        <relativePath>../</relativePath>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+
+        <!-- DL4J Platform -->
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>${nd4j.backend}</artifactId>
+            <version>${nd4j.version}</version>
+        </dependency>
+
+        <!-- Core DL4J -->
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-core</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-nlp</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-zoo</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+
+        <!-- deeplearning4j-ui is used for visualization: see http://deeplearning4j.org/visualization -->
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-ui_${scala.binary.version}</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+
+        <!-- ParallelWrapper & ParallelInference live here -->
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-parallel-wrapper</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+
+        <!-- Next 2: used for MapFileConversion Example. Note you need *both* together -->
+        <dependency>
+            <groupId>org.datavec</groupId>
+            <artifactId>datavec-hadoop</artifactId>
+            <version>${datavec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>jdk.tools</groupId>
+                    <artifactId>jdk.tools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>snappy-java</artifactId>
+                    <groupId>org.xerial.snappy</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!-- Arbiter - used for hyperparameter optimization (grid/random search) -->
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>arbiter-deeplearning4j</artifactId>
+            <version>${arbiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>arbiter-ui_${scala.binary.version}</artifactId>
+            <version>${arbiter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>dl4j-spark_${scala.binary.version}</artifactId>
+            <version>${dl4j.spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>dl4j-spark-parameterserver_${scala.binary.version}</artifactId>
+            <version>${dl4j.spark.version}</version>
+        </dependency>
+
+        <!-- datavec-data-codec: used only in video example for loading video data -->
+        <dependency>
+            <artifactId>datavec-data-codec</artifactId>
+            <groupId>org.datavec</groupId>
+            <version>${datavec.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.datavec</groupId>
+            <artifactId>datavec-spark_${scala.binary.version}</artifactId>
+            <version>${datavec.spark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.datavec</groupId>
+            <artifactId>datavec-local</artifactId>
+            <version>${datavec.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>arrow-format</artifactId>
+                    <groupId>org.apache.arrow</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>arrow-memory</artifactId>
+                    <groupId>org.apache.arrow</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>arrow-vector</artifactId>
+                    <groupId>org.apache.arrow</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.datavec</groupId>
+            <artifactId>datavec-api</artifactId>
+            <version>${datavec.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+
+        <!-- Used in the feedforward/classification/MLP* and feedforward/regression/RegressionMathFunctions example -->
+        <dependency>
+            <groupId>jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>${jfreechart.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>${jcommon.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.arrow</groupId>
+            <artifactId>arrow-vector</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.arrow</groupId>
+            <artifactId>arrow-memory</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.arrow</groupId>
+            <artifactId>arrow-format</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

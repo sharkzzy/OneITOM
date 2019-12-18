@@ -1,0 +1,13 @@
+discovery.server.address: https://localhost:8761/eureka/ 
+server:
+  port: 8081
+  host: localhost
+  contextPath: /myprojectservice
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://datashare-user:datashare-password@10.22.1.234:27017/datashare
+
+# 不连接注册中心
+eureka.client.enabled: false

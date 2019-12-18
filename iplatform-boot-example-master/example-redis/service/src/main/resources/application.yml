@@ -1,0 +1,12 @@
+discovery.server.address: https://localhost:8761/eureka/ 
+server:
+  port: 8081
+  host: localhost
+  contextPath: /myprojectservice
+spring:
+  redis:
+    database: 0
+    host: 10.22.1.234
+    port: 6379
+# 不连接注册中心
+eureka.client.enabled: false

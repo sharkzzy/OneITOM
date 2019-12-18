@@ -1,0 +1,25 @@
+discovery.server.address: http://localhost:8761/eureka/ 
+server:
+  port: 8081
+  host: localhost
+  contextPath: /myprojectservice
+
+# 不连接注册中心
+eureka.client.enabled: false
+spring: 
+  datasource: 
+    platform: mysql
+    dataSourceClassName: com.mysql.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf-8&autoReconnect=true"
+    username: bomcbp
+    password: bomcbp
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    openInView: false
+    show-sql: true
+    generate-ddl: true
+    hibernate.ddl-auto: create
+  data:
+   rest:
+      base-path: /api

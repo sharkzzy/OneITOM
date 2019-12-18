@@ -1,0 +1,10 @@
+shardingRule:  
+  tables:
+    t_order: 
+      actualDataNodes: defaultds.t_order_${0..1}#defaultds指的是springboot的默认数据源
+      tableStrategy: 
+        inline:
+          shardingColumn: order_id
+          algorithmExpression: t_order_${order_id % 2}
+props:
+  sql.show: true

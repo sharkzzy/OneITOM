@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="base/mainlayout">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div layout:fragment="content"
+		class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<div style="padding-top:15px;padding-bottom:10px;">
+			<form class="form-inline">
+				<div class="form-group">
+				    <input type="file" id="file" name="file">
+			    </div>
+			</form>
+		</div>
+		<table id="attachtable" class="table table-no-bordered"></table>
+		<script th:src="@{/js/plugins/jquery/jquery.min.js}"></script>
+		<script th:inline="javascript">/*<![CDATA[*/
+
+			var access_token = /*[[${access_token}]]*/;	
+		
+			$(function() {
+				
+				$("#file").fileupload({
+					url: /*[[@{/attach/upload}]]*/,
+					formData: {"access_token" : access_token},
+		    	    maxFileSize : 50000000, // 50 MB
+		    	    autoUpload: true,
+		    	    done: function(e,_result){
+		    	    	if(_result.result){
+		    	    		addAttach(_result.result);
+		    	    	}
+		    	    }
+				});
+				
+				initTable();
+				
+			});
+			
+	
+			function initTable(){
+				
+				var columns = [];
+				columns.push({width:50,align:'center',formatter:function(value, row, index){
+					return index+1;
+				}});
+				columns.push({field:'fileId', title: '文件ID',align:'center'});
+				columns.push({field:'fileName', title: '文件名称', align:'center'});
+				columns.push({field:'fileSize', title: '文件大小', align:'center'});
+				columns.push({field:'uploadMan', title: '上传人',align:'center'});
+				//构建表格
+				$("#attachtable").bootstrapTable({
+					ajaxOptions: {
+	                    headers: {'Authorization': 'Bearer ' + access_token}
+	                },
+					url: '/exampleui/attach/list',    //请求后台的URL（*） 
+			        method: 'post',                     //请求方式（*） 
+			        striped: false,                      //是否显示行间隔色 
+			        cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*） 
+			        pagination: true,                   //是否显示分页（*） 
+			        sortable: true,                     //是否启用排序 
+			        queryParams: function(params) {
+			        	return params;
+			        },//传递参数（*） 
+			        pagination:true,
+			        sidePagination: 'server',           //分页方式：client客户端分页，server服务端分页（*） 
+			        pageNumber:1,                       //初始化加载第一页，默认第一页 
+			        pageSize: 5,                        //每页的记录行数（*） 
+			        pageList: [5,10,25],                //可供选择的每页的行数（*） 
+			        strictSearch: false,                //是否显示表格搜索，此搜索是客户端搜索，不会进服务端
+			        clickToSelect: true,                //是否启用点击选中行 
+			        uniqueId: "ipaddr",				    //每一行的唯一标识，一般为主键列 
+			        cardView: false,                    //是否显示详细视图 
+			        detailView: false,                  //是否显示父子表 
+			        showColumns: false,                  //是否显示所有的列
+			        showRefresh: false,                  //是否显示刷新按钮
+			        smartDisplay:true,					 //分页信息只能显示，若为true则只有一页时不显示翻页控件
+			        showToggle:false,
+			        showColumns:false,
+			        onLoadSuccess: function (data) {         //加载成功时执行
+						
+			        },
+			        onCheck: function(row, $element){
+			        	
+			        },
+			        onLoadError: function () {           //加载失败时执行
+			        	alert('加载错误');
+			        },
+			        columns: columns
+			    });
+				
+			}
+			
+			function addAttach(_attach){
+				$.ajax({
+					 type:'PUT',
+			         headers: {'Authorization': 'Bearer ' + access_token},
+			         url: '/exampleui/attach/',
+			         data: JSON.stringify(_attach),
+			         dataType: 'json',
+			         contentType: 'application/json',
+			         success: function(result){
+			        	 if(result && result.fileId){
+			        		 alert('上传成功');
+			        		 $("#attachtable").bootstrapTable("refresh");
+			        	 }else{
+			        		 alert('上传失败');
+			        	 }
+			         }
+				});
+			}
+
+		/*]]>*/</script>
+	</div>
+</body>
+</html>

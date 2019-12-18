@@ -1,0 +1,6 @@
+CREATE TABLE ATTACH (
+  fileid VARCHAR(200) NOT NULL PRIMARY KEY,
+  filename VARCHAR(200) NOT NULL,
+  filesize INT,
+  uploadman VARCHAR(200)
+);

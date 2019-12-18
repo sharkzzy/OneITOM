@@ -1,0 +1,8 @@
+info:
+  app:
+    name: example前台服务
+    description: example前台服务
+    version: 1.0.0.100
+spring:
+  application:
+    name: example-ui

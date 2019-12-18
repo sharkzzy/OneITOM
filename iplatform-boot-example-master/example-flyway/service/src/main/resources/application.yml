@@ -1,0 +1,76 @@
+discovery.server.address: https://localhost:8761/eureka/ 
+server:
+  port: 8083
+  host: localhost
+  contextPath: /myprojectservice
+
+spring:
+  mvc:
+    dispatch-trace-request: true
+  datasource:
+    platform: oracle
+    dataSourceClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@10.22.1.166:1521:bomc
+    username: zhangleibomc
+    password: zhangleibomc
+
+#    platform: mysql
+#    dataSourceClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/authdb?useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+#    username: authdb-user
+#    password: authdb-password
+
+    initialize: false
+    sql-script-encoding: utf-8
+    continue-on-error: true
+    test-while-idle: true
+    time-between-eviction-runs-millis: 300000
+    min-evictable-idle-time-millis: 30000
+    validation-query: SELECT 1
+    max-active: 100
+    max-idle: 5
+    min-idle: 2
+    max-wait: 30000
+#  dynamicdatasource:
+#    enable: true # 开启支持多数据源
+#    names: bomcbp,authdb
+#    bomcbp:
+#      platform: oracle
+#      dataSourceClassName: oracle.jdbc.driver.OracleDriver
+#      url: jdbc:oracle:thin:@10.22.1.166:1521:bomc
+#      username: zhangleibomcbp
+#      password: zhangleibomcbp
+#    authdb:
+#      platform: mysql
+#      dataSourceClassName: com.mysql.jdbc.Driver
+#      url: "jdbc:mysql://127.0.0.1:3306/authdb?useUnicode=true&amp;characterEncoding=utf-8&autoReconnect=true"
+#      username: authdb-user
+#      password: authdb-password
+
+# 不连接注册中心
+eureka.client.enabled: false
+
+flyway:
+  enabled: true
+  baseline-on-migrate: true
+  baseline-description: init
+  baseline-version: 0
+  locations: db/${spring.datasource.platform}
+  clean-on-validation-error: true
+  cleanDisabled: true
+  table: flyway_schema_${spring.application.name}
+#  dynamicdatasource:
+#    enabled: false # 开启多数据源数据库版本管理
+#    names: bomcbp,authdb # 定义哪些动态数据源需要执行脚本初始化，默认是对所有动态数据源
+#    bomcbp:
+#      baseline-on-migrate: true
+#      baseline-description: init
+#      baseline-version: 0
+#      locations: db/${spring.datasource.platform}/bomcbp
+#      clean-on-validation-error: true
+#      cleanDisabled: true
+#      table: flyway_schema_${spring.application.name}
+
+
+#flyway.baseline-version: 1.0.0.100.1
+flyway.table: flyway_schema_my

@@ -1,0 +1,31 @@
+discovery.server.address: https://localhost:8761/eureka/ 
+server:
+  port: 8081
+  host: localhost
+  contextPath: /myprojectservice
+
+myapp:
+  username: demo
+  password: demo123
+  url: 'http://xxxxx'
+  counter: 1
+  enabled: true
+  params:
+    one: 1
+    two: 2
+    third: 3
+  words:
+    - word1
+    - word2
+    - word3
+  pairs:
+    - name: name1
+      age: 1
+    - name: name2
+      age: 2
+    - name: name3
+      age: 3
+  array: array1,array2,array3
+
+# 不连接注册中心
+eureka.client.enabled: false

@@ -1,0 +1,6 @@
+discovery.server.address: http://localhost:8761/eureka/
+server:
+  port: 5090
+  host: 10.50.7.16
+  contextPath: /myprojectservice
+eureka.client.enabled: false

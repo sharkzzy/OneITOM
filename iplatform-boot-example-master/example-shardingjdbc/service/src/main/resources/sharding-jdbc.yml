@@ -1,0 +1,31 @@
+shardingRule:  
+  tables:
+    t_order: 
+      actualDataNodes: ds${0..1}.t_order${0..1}
+      tableStrategy: 
+        inline:
+          shardingColumn: order_id
+          algorithmExpression: t_order${order_id % 2}
+      keyGeneratorColumnName: order_id
+    t_order_item:
+      actualDataNodes: ds${0..1}.t_order_item${0..1}
+      tableStrategy:
+        inline:
+          shardingColumn: order_id
+          algorithmExpression: t_order_item${order_id % 2}
+      keyGeneratorColumnName: order_item_id
+  bindingTables:
+    - t_order,t_order_item
+  broadcastTables:
+    - t_config
+  defaultDataSourceName: ds0
+  defaultDatabaseStrategy:
+    standard: 
+      shardingColumn: user_id
+      preciseAlgorithmClassName: org.iplatform.example.service.sharding.DatabasePreciseShardingAlgorithm
+  defaultTableStrategy:
+    none:
+  defaultKeyGeneratorClassName: io.shardingsphere.core.keygen.DefaultKeyGenerator
+  
+props:
+  sql.show: true

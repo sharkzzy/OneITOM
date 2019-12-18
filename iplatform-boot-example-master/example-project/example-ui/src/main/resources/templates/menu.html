@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="base/mainlayout">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div layout:fragment="content"
+		class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+		<div style="padding-top:15px;padding-bottom:10px;" th:text=${menuInfo}></div>
+
+	</div>
+</body>
+</html>

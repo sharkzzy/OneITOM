@@ -1,0 +1,9 @@
+info:
+  app:
+    name: sharding服务
+    description: sharding服务
+    version: 1.0.0.100
+spring:
+  application:
+    name: sharding-service
+     

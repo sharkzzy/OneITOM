@@ -1,0 +1,12 @@
+discovery.server.address: https://localhost:8761/eureka/ 
+server:
+  port: 8081
+  host: localhost
+  contextPath: /myprojectservice
+
+spring:
+  activemq:
+    broker-url: tcp://10.22.1.234:61616
+
+# 不连接注册中心
+eureka.client.enabled: false

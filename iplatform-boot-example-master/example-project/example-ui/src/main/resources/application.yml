@@ -1,0 +1,14 @@
+discovery.server.address: http://localhost:8761/eureka/
+# 不连接注册中心
+# eureka.client.enabled: false
+server:
+  port: 8080
+  host: localhost
+  contextPath: /exampleui
+
+spring:
+  thymeleaf:
+    cache: false
+  dfss: 
+    bucketname: OneITOM_bomc
+    secretkey: dfss

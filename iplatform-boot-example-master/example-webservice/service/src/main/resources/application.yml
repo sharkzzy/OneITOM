@@ -1,0 +1,12 @@
+discovery.server.address: https://localhost:8761/eureka/ 
+server:
+  port: 8081
+  host: localhost
+  contextPath: /myprojectservice
+cxf:
+  jaxrs:
+    component-scan: true
+    classes-scan-packages: org.apache.cxf.jaxrs.swagger
+
+# 不连接注册中心
+eureka.client.enabled: false

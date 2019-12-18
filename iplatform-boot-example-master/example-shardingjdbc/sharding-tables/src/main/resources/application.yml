@@ -1,0 +1,17 @@
+discovery.server.address: http://localhost:8761/eureka/ 
+server:
+  port: 8080
+  host: localhost
+  contextPath: /shardingservice
+spring: 
+  datasource: 
+    platform: mysql
+    dataSourceClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds
+    username: bomcbp
+    password: bomcbp
+# 不连接注册中心
+eureka.client.enabled: false
+flyway.enabled: true
+sharding.jdbc.enable: true
+sharding.jdbc.masterslave: false

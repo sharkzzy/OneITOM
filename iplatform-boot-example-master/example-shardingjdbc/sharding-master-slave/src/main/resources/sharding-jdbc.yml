@@ -1,0 +1,23 @@
+shardingRule:  
+  defaultDatabaseStrategy: 
+    inline:
+      shardingColumn: user_id
+      algorithmExpression: ms_ds${user_id % 2}
+  tables:
+    t_order: 
+      actualDataNodes: ms_ds${0..1}.t_order_${0..1}
+      tableStrategy: 
+        inline:
+          shardingColumn: order_id
+          algorithmExpression: t_order_${order_id % 2}
+  masterSlaveRules:
+    ms_ds0:
+      masterDataSourceName: ds_master_0
+      slaveDataSourceNames: [ds_slave_0]
+      loadBalanceAlgorithmType: ROUND_ROBIN
+    ms_ds1:
+      masterDataSourceName: ds_master_1
+      slaveDataSourceNames: [ds_slave_1]
+      loadBalanceAlgorithmType: ROUND_ROBIN
+props:
+  sql.show: true

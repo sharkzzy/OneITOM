@@ -1,0 +1,9 @@
+info:
+  app:
+    name: example后台服务
+    description: example后台服务
+    version: 1.0.0.100
+spring:
+  application:
+    name: example-service
+     

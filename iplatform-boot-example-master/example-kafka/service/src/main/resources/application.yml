@@ -1,0 +1,16 @@
+discovery.server.address: https://localhost:8761/eureka/ 
+server:
+  port: 8081
+  host: localhost
+  contextPath: /myprojectservice
+
+spring:
+  kafka:
+    enabled: true
+    broker:
+      address: 10.22.1.234:9092
+    groupId: iplatformboot
+    concurrency: 1
+
+# 不连接注册中心
+eureka.client.enabled: false

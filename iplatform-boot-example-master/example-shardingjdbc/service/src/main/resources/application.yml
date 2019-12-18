@@ -1,0 +1,29 @@
+discovery.server.address: http://localhost:8761/eureka/ 
+server:
+  port: 8081
+  host: localhost
+  contextPath: /myprojectservice
+spring: 
+  datasource: 
+    platform: mysql
+    dataSourceClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds0
+    username: bomcbp
+    password: bomcbp
+  dynamicdatasource: 
+    enable: true
+    names: ds0,ds1
+    ds0: 
+      dataSourceClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/ds0
+      username: bomcbp
+      password: bomcbp
+    ds1: 
+      dataSourceClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/ds1
+      username: bomcbp
+      password: bomcbp
+# 不连接注册中心
+eureka.client.enabled: false
+flyway.enabled: true
+sharding.jdbc.enable: true

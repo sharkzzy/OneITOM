@@ -1,0 +1,6 @@
+/* 用户表 */
+CREATE TABLE DEMO (
+  username VARCHAR(200) NOT NULL PRIMARY KEY,
+  truename VARCHAR(100) NOT NULL,
+  mobile VARCHAR(100)
+);
